@@ -102,25 +102,29 @@ class App:
         # set up the background surface
         self._image_surf = pygame.Surface(self._display_surf.get_size())
         self._image_surf = self._image_surf.convert()
-        self._image_surf.fill((250, 250, 250))
+        self._image_surf.fill((0, 0, 0))
 
         # draw the grid lines
         # vertical lines
-        pygame.draw.line(self._image_surf, (0, 0, 0), (100, 0), (100, 300), 2)
-        pygame.draw.line(self._image_surf, (0, 0, 0), (200, 0), (200, 300), 2)
+        pygame.draw.line(self._image_surf,
+                         (255, 255, 255), (100, 0), (100, 300), 1)
+        pygame.draw.line(self._image_surf,
+                         (255, 255, 255), (200, 0), (200, 300), 1)
 
         # horizontal lines
-        pygame.draw.line(self._image_surf, (0, 0, 0), (0, 100), (300, 100), 2)
-        pygame.draw.line(self._image_surf, (0, 0, 0), (0, 200), (300, 200), 2)
+        pygame.draw.line(self._image_surf,
+                         (255, 255, 255), (0, 100), (300, 100), 1)
+        pygame.draw.line(self._image_surf,
+                         (255, 255, 255), (0, 200), (300, 200), 1)
 
     def on_quit(self):
         self._running = False
 
     def on_render(self, message):
-        font = pygame.font.Font(None, 24)
-        text = font.render(message, 1, (10, 10, 10))
-        self._image_surf.fill((250, 250, 250), (0, 300, 300, 25))
-        self._image_surf.blit(text, (10, 300))
+        font = pygame.font.Font(None, 25)
+        text = font.render(message, 1, (255, 255, 255))
+        self._image_surf.fill((0, 0, 0), (0, 300, 300, 25))
+        self._image_surf.blit(text, (80, 305))
         self._display_surf.blit(self._image_surf, (0, 0))
         pygame.display.flip()
 
@@ -140,16 +144,15 @@ class App:
 
         # draw the appropriate piece
         if (player.char == 'o'):
-            pygame.draw.circle(self._image_surf, (0, 0, 0), (center_x,
-                                                             center_y), 44, 2)
+            pygame.draw.circle(self._image_surf,
+                               (0, 0, 255), (center_x, center_y), 45, 2)
         else:
-            pygame.draw.line(self._image_surf, (0, 0, 0),
-                             (center_x - 22,
-                              center_y - 22), (center_x + 22,
-                                               center_y + 22), 2)
-            pygame.draw.line(self._image_surf, (0, 0, 0), (center_x + 22,
-                                                           center_y - 22),
-                             (center_x - 22, center_y + 22), 2)
+            pygame.draw.line(self._image_surf, (255, 0, 0),
+                             (center_x - 45, center_y - 45),
+                             (center_x + 45, center_y + 45), 2)
+            pygame.draw.line(self._image_surf, (255, 0, 0),
+                             (center_x + 45, center_y - 45),
+                             (center_x - 45, center_y + 45), 2)
 
     def on_execute(self):
         if (self.on_init() is False):
