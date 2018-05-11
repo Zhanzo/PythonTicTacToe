@@ -183,10 +183,18 @@ class App:
                             turn = self.player1
                         message = "It's player " + str(turn.num) + "'s turn"
                         self.on_render(message)
-        time.sleep(3)
-        self.on_cleanup()
-
-
-if __name__ == "__main__":
+    
+def main():
     app = App()
     app.on_execute()
+    while True:
+        for event in pygame.event.get():
+            if event.type is pygame.KEYDOWN:
+                if (event.key is pygame.K_ESCAPE):
+                    return
+                if (event.key is pygame.K_RETURN):
+                    app = App()
+                    app.on_execute()
+
+if __name__ == "__main__":
+    main()
