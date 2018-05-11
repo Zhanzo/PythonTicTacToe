@@ -124,7 +124,7 @@ class App:
         font = pygame.font.Font(None, 25)
         text = font.render(message, 1, (255, 255, 255))
         self._image_surf.fill((0, 0, 0), (0, 300, 300, 25))
-        self._image_surf.blit(text, (80, 305))
+        self._image_surf.blit(text, (0, 305))
         self._display_surf.blit(self._image_surf, (0, 0))
         pygame.display.flip()
 
@@ -183,11 +183,13 @@ class App:
                             turn = self.player1
                         message = "It's player " + str(turn.num) + "'s turn"
                         self.on_render(message)
-    
+        time.sleep(3) 
 def main():
     app = App()
     app.on_execute()
     while True:
+        message = "Replay: RETURN. Exit: ESC"
+        app.on_render(message)
         for event in pygame.event.get():
             if event.type is pygame.KEYDOWN:
                 if (event.key is pygame.K_ESCAPE):
