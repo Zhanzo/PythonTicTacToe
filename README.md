@@ -1,4 +1,4 @@
-# PythonTicTacToe
+# Tic\_Tac\_Toe
 A Tic Tac Toe game written in Python using Pygame
 
 ## app.py
